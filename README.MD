@@ -1,4 +1,4 @@
-# Welkom team C# Our Souls
+# Welkom team C# Our Souls: Yari, Lara, Ronny, Elke, Jessica
 
 Github : it-graduaten/2021-TD-Bibliotheek-C_Our_Souls
 
