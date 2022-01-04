@@ -1,0 +1,96 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.MediumAanmakenView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Views" xmlns:components="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="MediumAanmakenView" Height="700" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <components:MenuBalk Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+        <Button x:Name="btnTerug" Content="&lt; Terug" Foreground="#517174" FontWeight="Bold" HorizontalAlignment="Left" BorderThickness="0" Grid.Column="0" Grid.Row="1" Margin="5" Command="{Binding}" CommandParameter="Terug" />
+        <Label x:Name="lblTitle" Content="{Binding FormulierTitel}" Style="{StaticResource TypoTitel}" Grid.Row="2" Grid.Column="0" />
+        <GroupBox Grid.Row="3" Grid.Column="0" Padding="4" Margin="4">
+            <GroupBox.Header>Medium</GroupBox.Header>
+            <StackPanel>
+                <Label x:Name="lblTitel" Content="Titel" Style="{StaticResource TypoBody}" />
+                <TextBox x:Name="txtNaam" Style="{StaticResource TextboxStyle}" Text="{Binding Title}" Padding="4 0 4 0" />
+                <Label x:Name="lblEAN" Content="EAN" Style="{StaticResource TypoBody}" />
+                <TextBox x:Name="txtEAN" Style="{StaticResource TextboxStyle}" Text="{Binding EAN}" Padding="4 0 4 0" />
+                <Label x:Name="lblSamenvatting" Content="Korte samenvatting" Style="{StaticResource TypoBody}" />
+                <TextBox x:Name="txtKorteSamenvatting" Style="{StaticResource TextboxStyle}" Text="{Binding KorteSamenvatting}" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="False" Height="300" Padding="4" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="3" Grid.Column="1" Padding="4" Margin="4">
+            <GroupBox.Header>Info</GroupBox.Header>
+            <StackPanel>
+                <Label x:Name="lblGenre" Content="Genre" Style="{StaticResource TypoBody}" />
+                <components:MultiSelectComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Omschrijving" SelectedItems="{Binding AddedGenres, Mode=TwoWay}" x:Name="MC" />
+                <!--ItemsSource="{Binding Categories}"-->
+                <!--SelectedItems="{Binding AddedGenres}"-->
+                <Label x:Name="lblLeeftijdscategorie" Content="Leeftijdscategorie" Style="{StaticResource TypoBody}" />
+                <ComboBox x:Name="cmbLeeftijdscategorie" Style="{StaticResource cmbStyle}" DisplayMemberPath="Omschrijving" ItemsSource="{Binding AgeCategories}" SelectedItem="{Binding LeeftijdsCategorie}" Padding="4" />
+                <Label x:Name="lblTypeMedium" Content="Type medium" Style="{StaticResource TypoBody}" />
+                <ComboBox x:Name="cmbTypeMedium" Style="{StaticResource cmbStyle}" DisplayMemberPath="Naam" SelectedItem="{Binding TypeMedium}" ItemsSource="{Binding Types}" Padding="4" />
+                <Label x:Name="lblMedewerkers" Content="Medewerkers" Style="{StaticResource TypoBody}" />
+                <ComboBox x:Name="cmbMedewerkers" Style="{StaticResource cmbStyle}" DisplayMemberPath="Naam" ItemsSource="{Binding Medewerkers}" SelectedItem="{Binding SelectedMedewerker}" SelectedValue="" Padding="4" />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnMedewerkerAanmaken" Width="200" Margin="0 5 5 5" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="MedewerkerAanmaken" Content="MEDEWERKER AANMAKEN" VerticalAlignment="Bottom" />
+                    <Button x:Name="btnMedewerkerBewerken" Width="30" Margin="0 5 0 5" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="MedewerkerBewerken" VerticalAlignment="Bottom">
+                        <Image Source="/Images/pencil-solid.png" Height="15" />
+                    </Button>
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnToevoegen" Grid.Column="0" Margin="0 5 5 5" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="MedewerkerToevoegen" VerticalAlignment="Bottom">
+                        <Image Source="/Images/arrow-down-solid.png" Height="15" />
+                    </Button>
+                    <Button x:Name="btnVerwijderen" Grid.Column="1" Margin="0 5 5 5" Style="{StaticResource ButtonStyleRoze}" Command="{Binding}" CommandParameter="MedewerkerVerwijderen" VerticalAlignment="Bottom">
+                        <Image Source="/Images/arrow-up-solid.png" Height="15" />
+                    </Button>
+                </Grid>
+                <Label x:Name="lblMedewerkersLb" Content="Medewerkers" Style="{StaticResource TypoBody}" />
+                <ListBox x:Name="lbMedewerkers" Height="125" Style="{StaticResource ListboxStyle}" ItemsSource="{Binding AddedMedewerkers}" DisplayMemberPath="Naam" SelectedItem="{Binding ListboxSelectedMedewerker}" Padding="4" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="3" Grid.Column="2" Padding="4" Margin="4">
+            <GroupBox.Header>Extra's</GroupBox.Header>
+            <StackPanel>
+                <Label x:Name="lblType" Content="Type" Style="{StaticResource TypoBody}" />
+                <ComboBox x:Name="cmbType" Style="{StaticResource cmbStyle}" DisplayMemberPath="Type" ItemsSource="{Binding Extras}" SelectedItem="{Binding SelectedExtra}" Padding="4" />
+                <Label x:Name="lblBeschrijving" Content="Beschrijving" Style="{StaticResource TypoBody}" />
+                <TextBox x:Name="txtBeschrijving" Style="{StaticResource TextboxStyle}" Text="{Binding BeschrijvingExtra}" />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnToevoegenExtra" Width="170" Margin="0 5 5 5" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="ExtraToevoegen" Content="TOEVOEGEN" VerticalAlignment="Bottom" />
+                </StackPanel>
+                <Label x:Name="lblOverzicht" Content="Overzicht" Style="{StaticResource TypoBody}" />
+                <ListBox x:Name="lbOverzicht" Height="125" Style="{StaticResource ListboxStyle}" DisplayMemberPath="DisplayMember" ItemsSource="{Binding AddedMediumDetailExtras}" SelectedItem="{Binding SelectedMediumDetailExtra}" Padding="4" />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnEigenschapWijzigen" Width="190" Margin="0 5 5 5" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="ExtraEigenschapAanpassen" Content="EIGENSCHAP WIJZIGEN" />
+                    <Button x:Name="btnEigenschapVerwijderen" Width="30" Margin="0 5 5 5" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="ExtraEigenschapVerwijderen">
+                        <Image Source="/Images/trash-can-regular-s.png" Height="15" />
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 95 0 0">
+                    <Button x:Name="btnBewerken" Width="170" Margin="0 5 0 5" Style="{StaticResource ButtonStyleRoze}" Command="{Binding}" CommandParameter="Opslaan" Content="Opslaan" VerticalAlignment="Bottom" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

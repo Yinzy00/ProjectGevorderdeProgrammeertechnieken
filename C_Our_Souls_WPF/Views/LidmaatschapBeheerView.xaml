@@ -1,0 +1,71 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.LidmaatschapBeheerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Views"
+        xmlns:components="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Title="Lidmaatschap aanvragen" Height="690" Width="1200">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="750" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        <components:MenuBalk Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" />
+        <!--Visibility="{Binding IsBestaandeGebruiker, Converter={StaticResource VisibleIfTrueConverter}}"-->
+        <Image x:Name="imgLibrary" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Source="/Images/Library.jpg" Stretch="Fill" />
+        <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="4">
+            <StackPanel Grid.Row="2" Grid.Column="2" Margin="0 30 0 0">
+                <Label x:Name="lblZoeken" Content="Zoeken" Style="{StaticResource TypoBody}" />
+                <TextBox x:Name="txtZoeken" Text="{Binding ZoekNaam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextboxStyle}" Margin="0 0 10 0" />
+            </StackPanel>
+            <Button x:Name="btnAccepteren" Content="ACCEPTEREN"
+                Style="{StaticResource ButtonStyleBlue}"
+                Command="{Binding}" CommandParameter="Goedkeuren"
+                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                Margin="0 10 10 10" />
+            <Button x:Name="btnWeigeren" Content="WEIGEREN"
+                Command="{Binding}" CommandParameter="Weigeren"
+                Style="{StaticResource ButtonStyleRoze}"
+                Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                Margin="0 10 10 0" />
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="5">
+            <Label x:Name="lblTitel" Style="{StaticResource TypoTitel}" Content="LIDMAATSCHAP" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" />
+            <DataGrid x:Name="dbLidmaatschapaanvragen"
+                  ItemsSource="{Binding Gebruikers}"
+                  SelectedItem="{Binding GeselecteerdeGebruiker}"
+                  Height="550"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  VerticalScrollBarVisibility="Visible"
+                  Style="{StaticResource DataGridStyle}"
+                  SelectionMode="Single"
+                  HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naam" Binding="{Binding VolledigeNaam}" Width="250"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                    <DataGridTextColumn Header="Datum" Binding="{Binding LidmaatschapAanvraag, StringFormat='dd/MM/yyyy'}" Width="*"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

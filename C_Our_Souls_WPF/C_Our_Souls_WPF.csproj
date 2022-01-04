@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.4.1.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.1.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.13.2\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.2\build\NUnit.props')" />
+  <Import Project="..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A30CE14D-EF23-4B80-8502-5B507DC2D97A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>C_Our_Souls_WPF</RootNamespace>
+    <AssemblyName>C_Our_Souls_WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\books.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FakeItEasy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeItEasy.7.2.0\lib\net45\FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.3.4.0\lib\net40\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CardBoekenverkoper.xaml.cs">
+      <DependentUpon>CardBoekenverkoper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AccountPopUpViewModel.cs" />
+    <Compile Include="ViewModels\AdminAccountViewModel.cs" />
+    <Compile Include="ViewModels\BoekenBestandBeheerViewModel.cs" />
+    <Compile Include="ViewModels\BoekenbeursAanmakenViewModel.cs" />
+    <Compile Include="ViewModels\FinancieleAdministratieViewModel.cs" />
+    <Compile Include="ViewModels\BoekenverkoopGebruikerViewModel.cs" />
+    <Compile Include="ViewModels\DetailBoekViewModel.cs" />
+    <Compile Include="ViewModels\ReserverenBoekGebruikerViewModel.cs" />
+    <Compile Include="ViewModels\UitleenBeheerViewModel.cs" />
+    <Compile Include="ViewModels\OverzichtBoetesViewModel.cs" />
+    <Compile Include="ViewModels\SuperUserViewModel.cs" />
+    <Compile Include="ViewModels\UitleningenViewModel.cs" />
+    <Compile Include="ViewModels\MediumExemplaarToevoegenViewModel.cs" />
+    <Compile Include="Views\AccountPopUpView.xaml.cs">
+      <DependentUpon>AccountPopUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminAccountView.xaml.cs">
+      <DependentUpon>AdminAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BoekenbestandView.xaml.cs">
+      <DependentUpon>BoekenbestandView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MultiSelectComboBox.xaml.cs">
+      <DependentUpon>MultiSelectComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MediumAanmakenViewModel.cs" />
+    <Compile Include="ViewModels\MediumMedewerkerViewModel.cs" />
+    <Compile Include="ViewModels\ReserverenBoekBeheerderViewModel.cs" />
+    <Compile Include="Views\BoekenbeursAanmakenView.xaml.cs">
+      <DependentUpon>BoekenbeursAanmakenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DashboardComponent.xaml.cs">
+      <DependentUpon>DashboardComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\InschrijvingenBoekenbeursViewModel.cs" />
+    <Compile Include="Views\FinancieleAdministratieView.xaml.cs">
+      <DependentUpon>FinancieleAdministratieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BoekenverkoopGebruikerView.xaml.cs">
+      <DependentUpon>BoekenverkoopGebruikerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailBoekView.xaml.cs">
+      <DependentUpon>DetailBoekView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgotPasswordPopup.xaml.cs">
+      <DependentUpon>ForgotPasswordPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReserverenBoekGebruikerView.xaml.cs">
+      <DependentUpon>ReserverenBoekGebruikerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UitleenBeheerView.xaml.cs">
+      <DependentUpon>UitleenBeheerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UitleningenView.xaml.cs">
+      <DependentUpon>UitleningenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InschrijvingenBoekenbeursView.xaml.cs">
+      <DependentUpon>InschrijvingenBoekenbeursView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediumExemplaarToevoegenView.xaml.cs">
+      <DependentUpon>MediumExemplaarToevoegenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediumAanmakenView.xaml.cs">
+      <DependentUpon>MediumAanmakenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediumMedewerkerView.xaml.cs">
+      <DependentUpon>MediumMedewerkerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OverzichtBoekenbeursView.xaml.cs">
+      <DependentUpon>OverzichtBoekenbeursView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\CardBoekenbeurs.xaml.cs">
+      <DependentUpon>CardBoekenbeurs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MenuBalk.xaml.cs">
+      <DependentUpon>MenuBalk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BasisViewModel.cs" />
+    <Compile Include="ViewModels\DashboardBeheerderViewModel.cs" />
+    <Compile Include="ViewModels\DashboardGebruikerViewModel.cs" />
+    <Compile Include="Views\DashboardBeheerderView.xaml.cs">
+      <DependentUpon>DashboardBeheerderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DashboardGebruikerView.xaml.cs">
+      <DependentUpon>DashboardGebruikerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\CstmPasswordBox.xaml.cs">
+      <DependentUpon>CstmPasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AccountRegistratieViewModel.cs" />
+    <Compile Include="ViewModels\LidmaatschapBeheerViewModel.cs" />
+    <Compile Include="ViewModels\BoekenbeursGebruikerViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Views\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LidmaatschapBeheerView.xaml.cs">
+      <DependentUpon>LidmaatschapBeheerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BoekenbeursGebruiker.xaml.cs">
+      <DependentUpon>BoekenbeursGebruiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OverzichtBoetesView.xaml.cs">
+      <DependentUpon>OverzichtBoetesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp.xaml.cs">
+      <DependentUpon>PopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReserverenBoekBeheerderView.xaml.cs">
+      <DependentUpon>ReserverenBoekBeheerderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuperUserView.xaml.cs">
+      <DependentUpon>SuperUserView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="ViewModels\OverzichtBoekenbeursViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Components\CardBoekenverkoper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\DashboardComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ForgotPasswordPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReserverenBoekGebruikerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UitleenBeheerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UitleningenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReserverenBoekBeheerderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SuperUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\AccountPopUpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BoekenbestandView.xaml" />
+    <Page Include="Components\MultiSelectComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BoekenbeursAanmakenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FinancieleAdministratieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BoekenverkoopGebruikerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailBoekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InschrijvingenBoekenbeursView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediumExemplaarToevoegenView.xaml" />
+    <Page Include="Views\MediumAanmakenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediumMedewerkerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OverzichtBoetesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Components\CardBoekenbeurs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MenuBalk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DashboardBeheerderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DashboardGebruikerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\CstmPasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LidmaatschapBeheerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BoekenbeursGebruiker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\OverzichtBoekenbeursView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C_Our_Souls_DAL\C_Our_Souls_DAL.csproj">
+      <Project>{3DB7AF56-1F46-4620-9476-CC2E9B34D5AA}</Project>
+      <Name>C_Our_Souls_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\boek_kofie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\home-outline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\kruisje.png" />
+    <Resource Include="Images\Library.jpg" />
+    <Resource Include="Images\Login-Book.png" />
+    <Resource Include="Images\oude_boeken.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Profile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pencil-solid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow-down-solid.png" />
+    <Resource Include="Images\arrow-up-solid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trash-can-regular-s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\books.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search-white-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\paginatie_terug.png" />
+    <Resource Include="Images\paginatie_verder.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.5.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.5.1\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.13.2\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.2\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.1.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.1.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Fody.6.5.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.1\build\Fody.targets')" />
+</Project>

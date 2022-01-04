@@ -1,0 +1,88 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.AccountView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Views"
+        xmlns:components="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Title="Account" Height="750" Width="1200">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <components:MenuBalk Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Visibility="{Binding IsBestaandeGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" />
+        </Grid>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="730" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="imgLibrary" Grid.Row="1" Grid.Column="0" Grid.RowSpan="18" Source="/Images/Library.jpg" Stretch="Fill" Margin="0,0,0.4,0" />
+                <Label x:Name="lblTitel" Style="{StaticResource TypoTitel}" Content="{Binding FormulierTitel}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalContentAlignment="Bottom" Margin="0,20,0,0" />
+                <Label x:Name="lblNaam" Style="{StaticResource TypoBody}" Content="Naam" Grid.Row="2" Grid.Column="2" Margin="3,20,0,5" VerticalContentAlignment="Bottom" />
+                <TextBox x:Name="txtNaam" Style="{StaticResource TextboxStyle}" Height="45" Grid.Row="3" Grid.Column="2" Margin="3" Text="{Binding Naam}" />
+                <Label x:Name="lblVoornaam" Style="{StaticResource TypoBody}" Content="Voornaam" Grid.Row="2" Grid.Column="3" Margin="3,20,0,5" VerticalContentAlignment="Bottom" />
+                <TextBox x:Name="txtVoornaam" Style="{StaticResource TextboxStyle}" Height="45" Grid.Row="3" Grid.Column="3" Margin="3" Text="{Binding Voornaam}" />
+                <Label x:Name="lblStraat" Style="{StaticResource TypoBody}" Content="Straatnaam &amp; huisnummer" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="3,20,0,5" VerticalAlignment="Bottom" />
+                <TextBox x:Name="txtStraat" Style="{StaticResource TextboxStyle}" Height="45" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Text="{Binding Adres}" />
+                <Label x:Name="lblPostcode" Style="{StaticResource TypoBody}" Content="Postcode" Grid.Row="6" Grid.Column="2" Margin="3,20,0,5" VerticalAlignment="Bottom" />
+                <TextBox x:Name="txtPostcode" Style="{StaticResource TextboxStyle}" Height="45" Grid.Row="7" Grid.Column="2" Margin="3" Text="{Binding Postcode}" />
+                <Label x:Name="lblWoonplaats" Style="{StaticResource TypoBody}" Content="Woonplaats" Grid.Row="6" Grid.Column="3" Margin="3,20,0,5" VerticalAlignment="Bottom" />
+                <TextBox x:Name="txtWoonplaats" Style="{StaticResource TextboxStyle}" Height="45" Grid.Row="7" Grid.Column="3" Margin="3" Text="{Binding Woonplaats}" />
+                <Label x:Name="lblEmailadres" Style="{StaticResource TypoBody}" Content="Email-adres" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Margin="3,20,0,5" VerticalAlignment="Bottom" />
+                <TextBox x:Name="txtEmailadres" Style="{StaticResource TextboxStyle}" Height="45" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Text="{Binding Email}" />
+                <Label x:Name="lblWachtwoord" Style="{StaticResource TypoBody}" Content="Wachtwoord" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Margin="3,20,0,5" VerticalAlignment="Bottom" />
+                <components:CstmPasswordBox x:Name="pwbWachtwoord" Password="{Binding Wachtwoord}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" />
+                <Label x:Name="lblHerhalingWachtwoord" Style="{StaticResource TypoBody}" Content="Herhaling wachtwoord" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Margin="3,20,0,5" VerticalAlignment="Bottom" />
+                <components:CstmPasswordBox x:Name="pwbHerhalingWachtwoord" Password="{Binding HerhalingWachtwoord}" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" />
+                <CheckBox x:Name="cbLidmaatschapAanvragen" Style="{StaticResource TypoBody}" Content="Automatisch lidmaatschap aanvragen" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3,20,0,5" IsChecked="{Binding LidmaatschapAanvraagBool}" Visibility="{Binding IsNieuweGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" />
+                <Label x:Name="lblLidmaatschap" Style="{StaticResource TypoBody}" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="3,20,0,5" Content="{Binding Lidmaatschap}" Visibility="{Binding IsBestaandeGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" HorizontalAlignment="Right" Width="286" />
+                <Label x:Name="lblMeerInfo" Style="{StaticResource AuthenticationFormLinks}" Grid.Row="14" Grid.Column="3" Content="Meer info" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,20,0,5" Visibility="{Binding IsNieuweGebruiker, Converter={StaticResource VisibleIfTrueConverter}}">
+                    <Label.InputBindings>
+                        <MouseBinding Command="{Binding}" CommandParameter="MeerInfo" MouseAction="LeftClick" />
+                    </Label.InputBindings>
+                </Label>
+                <Button x:Name="btnRegistreren" Style="{StaticResource ButtonStyleRoze}" Content="REGISTREREN" Height="40" Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" Margin="3,40,0,5" Command="{Binding}" CommandParameter="Registreren" Visibility="{Binding IsNieuweGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" />
+                <Button x:Name="btnAanpassen" Style="{StaticResource ButtonStyleBlue}" Content="ACCOUNT AANPASSEN" Height="40" Grid.Row="15" Grid.Column="2" Margin="3" Command="{Binding}" CommandParameter="Aanpassen" Visibility="{Binding IsBestaandeGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" />
+                <Button x:Name="btnVerwijderen" Style="{StaticResource ButtonStyleRoze}" Content="ACCOUNT VERWIJDEREN" Height="40" Grid.Row="15" Grid.Column="3" Margin="3" Command="{Binding}" CommandParameter="Verwijderen" Visibility="{Binding IsBestaandeGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" />
+                <Button x:Name="btnAanmelden" Style="{StaticResource ButtonStyleBlue}" Content="AANMELDEN" Height="40" Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="2" Margin="3,0,0,5" Command="{Binding}" CommandParameter="Aanmelden" Visibility="{Binding IsNieuweGebruiker, Converter={StaticResource VisibleIfTrueConverter}}" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

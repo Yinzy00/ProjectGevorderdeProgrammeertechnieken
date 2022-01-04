@@ -1,0 +1,43 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.PopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Views"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        BorderThickness="0"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        SizeToContent="Height"
+        Title="PopUp" MinHeight="225" Width="400">
+    <Border CornerRadius="3" BorderThickness="2" BorderBrush="#325453">
+        <Grid Style="{StaticResource WindowsBackgroundColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="35" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="titel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 30 0" Style="{StaticResource PopUpTitle}">
+                Dit is de titel van de popup
+            </TextBlock>
+            <Image Grid.Column="3" Cursor="Hand" Grid.Row="1" Source="/Images/kruisje.png" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 15 0" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
+
+            <TextBlock x:Name="text" Style="{StaticResource PopUpText}" Grid.Row="2" Grid.Column="1" Margin="0 0 30 0" Grid.ColumnSpan="3" TextWrapping="Wrap">
+                 Weet u zeker dat u ...? Wilt u doorgaan met? U hebt ...
+            </TextBlock>
+            <Button x:Name="ok" Grid.Column="2" Width="110" Grid.Row="3" HorizontalAlignment="Right" Margin="10 0 15 10" Style="{StaticResource ButtonStyleBlue}" Click="Ok_Click">Ok</Button>
+            <Button x:Name="cancel" Grid.Column="3" Width="110" Grid.Row="3" HorizontalAlignment="Right" Margin="10 0 15 10" Style="{StaticResource ButtonStyleRoze}" Click="Cancel_Click">Cancel</Button>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,48 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.MediumMedewerkerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="MediumMedewerkerView" Height="450" Width="500">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
+    <Grid Style="{StaticResource WindowsBackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button x:Name="btnTerug" Background="Transparent" BorderBrush="Transparent" Grid.Row="0" Grid.Column="1" Command="{Binding}" CommandParameter="Terug" Content="&lt; Terug" Foreground="#517174" FontWeight="Bold" HorizontalAlignment="Left">
+        </Button>
+        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource TypoTitel}"  Margin="0 50 0 0">
+            MEDEWERKERS BEHEREN
+        </Label>
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <Label Content="Naam" Style="{StaticResource TypoBody}" />
+            <TextBox x:Name="txtNaam" Text="{Binding Naam}" Style="{StaticResource TextboxStyle}" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Label Content="Functie" Style="{StaticResource TypoBody}" />
+            <ComboBox x:Name="cbFunctie" ItemsSource="{Binding Functies}" DisplayMemberPath="Naam" SelectedItem="{Binding GeselecteerdeFunctie}" Style="{StaticResource cmbStyle}" />
+        </StackPanel>
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource ButtonStyleRoze}" Command="{Binding}" CommandParameter="Opslaan" Content="Opslaan" Margin="10 0" />
+            <Button Grid.Column="1" Style="{StaticResource ButtonStyleBlue}" Command="{Binding}" CommandParameter="Verwijder" Content="Verwijder" Margin="10 0" Visibility="{Binding KnopVerwijder, Converter={StaticResource VisibleIfTrueConverter}}" />
+        </Grid>
+    </Grid>
+</Window>

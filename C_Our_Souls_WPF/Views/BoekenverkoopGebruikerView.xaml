@@ -1,0 +1,29 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.BoekenverkoopGebruikerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Components="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Title="BoekenverkoopGebruikerView" Height="800" Width="1080">
+
+    <Grid>
+        <Grid Height="100" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Components:MenuBalk Grid.Row="0"></Components:MenuBalk>
+            
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" Style="{StaticResource TypoTitel}" Content="Boekenverkoop overzicht" Typography.Capitals="AllSmallCaps" />
+            <Label x:Name="TitelView" Content="Boeken Verkoop" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="28" Style="{StaticResource ColorProjectBlue}"/>
+
+        </Grid>
+        <ScrollViewer Margin="0,125,-0.4,-0.4">
+            <Grid x:Name="Grid">
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

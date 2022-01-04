@@ -1,0 +1,41 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.OverzichtBoetesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:components="clr-namespace:C_Our_Souls_WPF.Components"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Views"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+       WindowStyle="None"
+        Title="Account" Height="750" Width="1200">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="750" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <components:MenuBalk Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+        <Image x:Name="imgLibrary" Grid.Row="1" Grid.Column="0" Grid.RowSpan="17" Source="/Images/Library.jpg" Stretch="Fill" />
+        <Label x:Name="lblTitel" Style="{StaticResource TypoTitel}" Content="BOETES" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalContentAlignment="Bottom" />
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <DataGrid ItemsSource="{Binding Boetes}" IsReadOnly="True" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" GridLinesVisibility="None" Background="#ffffff" BorderThickness="0" HeadersVisibility="Column" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Titel" Binding="{Binding Medium.MediumDetail.Title}" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                    <DataGridTextColumn Header="Te betalen" Binding="{Binding BoeteBedrag, StringFormat=C, ConverterCulture=nl-BE}" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

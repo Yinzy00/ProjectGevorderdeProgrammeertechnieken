@@ -1,0 +1,103 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.BoekenbestandView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="BoekenbestandView" Height="1248" Width="1535">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibelifTrueConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <local:MenuBalk Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"></local:MenuBalk>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label x:Name="lblGenre" Content="Genre" Style="{StaticResource TypoBody}" />
+            <ComboBox x:Name="cmbGenre" ItemsSource="{Binding Categorie}" DisplayMemberPath="Omschrijving" SelectedItem="{Binding GeslecteerdGenre, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <Label x:Name="lblLeeftijdsCategorie" Content="Leeftijdscategorie" Style="{StaticResource TypoBody}" />
+            <ComboBox x:Name="cmbLeeftijdsCategorie" ItemsSource="{Binding LeeftijdsKlasse}" DisplayMemberPath="Omschrijving" SelectedItem="{Binding GeslecteerdeLeeftijdsklasse, Mode=TwoWay}" />
+        </StackPanel>
+        <Button Grid.Column="1" Grid.Row="4" Content="Filters verwijderen" Style="{StaticResource ButtonStyleRoze}" Command="{Binding}" CommandParameter="FiltersVerwijderen" />
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Margin="0 10 0 10">
+            <Image x:Name="imgsearch" Source="/Images/search.png" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Width="25" Margin="5 0" />
+            <TextBox x:Name="txtZoeken" Width="200" Text="{Binding ZoekTerm, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <Button x:Name="btnBewerken" Grid.Column="1" Grid.Row="6" Content="Bewerken" Style="{StaticResource ButtonStyleBlue}" Height="50" Margin="0 0 0 10" Command="{Binding}" CommandParameter="Bewerken" />
+        <Button x:Name="btnToevoegen" Grid.Column="1" Grid.Row="7" Content="+ Nieuw boek" Style="{StaticResource ButtonStyleBlue}" Height="50" Margin="0 0 0 10" Command="{Binding}" CommandParameter="Toevoegen" />
+        <Button x:Name="btnVerwijderen" Grid.Column="1" Grid.Row="8" Content="Verwijderen" Style="{StaticResource ButtonStyleRoze}" Height="50" Margin="0 0 0 10" Command="{Binding}" CommandParameter="Verwijderen"  Visibility="{Binding MediaExemplaren, Converter={StaticResource VisibelifTrueConverter}}" />
+        <Button x:Name="btnExemplaarToevoegen" Grid.Column="1" Grid.Row="9" Content="Nieuw Exemplaar toevoegen" Style="{StaticResource ButtonStyleBlue}" Height="50" Margin="0 0 0 10" Command="{Binding}" CommandParameter="ExemplaarToevoegen" />
+        <CheckBox x:Name="ckbDubbeleExemplaren" Grid.Column="1" Grid.Row="10"  Content="Verberg dubbele exemplaren" Style="{StaticResource TypoBody}" IsChecked="{Binding Ischecked}" />
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1">
+            <Image Source="/Images/paginatie_terug.png" Style="{StaticResource paginatieButton}" Stretch="None">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="PageBack"/>
+                </Image.InputBindings>
+            </Image>
+            <Label x:Name="lblPaginaNummer" Content="{Binding PaginaNummerString}"></Label>
+            <Image Source="/Images/paginatie_verder.png" Style="{StaticResource paginatieButton}" Stretch="None">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" CommandParameter="PageNext"/>
+                </Image.InputBindings>
+            </Image>
+        </StackPanel>
+        <Label x:Name="lblBoekenbestand" Content="BoekenBestand" Grid.Column="3" Grid.Row="1" Style="{StaticResource TypoTitel}" Typography.Capitals="AllSmallCaps" />
+        <DataGrid x:Name="dgMediaDetailExemplaren" Grid.Column="2" Grid.RowSpan="11" Grid.Row="2"  AutoGenerateColumns="False"
+                  IsReadOnly="True" HeadersVisibility="Column" SelectionMode="Single"
+                  ItemsSource="{Binding MediumDetail}" SelectedItem="{Binding SelectedMediumDetail}"
+                  Visibility="{Binding MediaDetailExemplaren, Converter={StaticResource VisibelifTrueConverter}}"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" Style="{StaticResource DataGridStyle}" Grid.ColumnSpan="2" Margin="19.6,2.2,15,27.8">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgBoekTitel" Header="Titel" Binding="{Binding Title}"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgBoekAuteur" Header="Auteur" Binding="{Binding Auteurs}" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgBoekGenre" Header="Genre" Binding="{Binding Genres}" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgBoekLeeftijdscategorie" Header="Leeftijdscategorie" Binding="{Binding LeeftijdsKlasse.Omschrijving}"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgAantalExemplaren" Header="Aantal exemplaren" Binding="{Binding Aantal}"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="dgMediaExemplaren" Grid.Column="3" Grid.RowSpan="11" Grid.Row="2" AutoGenerateColumns="False"
+                  IsReadOnly="True" HeadersVisibility="Column" SelectionMode="Single"
+                  ItemsSource="{Binding Mediums}" SelectedItem="{Binding GeslecteerdMedium}"
+                  Visibility="{Binding MediaExemplaren, Converter={StaticResource VisibelifTrueConverter}}"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center"
+                  Style="{StaticResource DataGridStyle}" Margin="0.6,3.2,15,14.8">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgTitle" Header="Titel" Binding="{Binding MediumDetail.Title}"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgAuteur" Header="Auteur" Binding="{Binding MediumDetail.Auteurs}" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgGenre" Header="Genre" Binding="{Binding MediumDetail.Genres}" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+                <DataGridTextColumn x:Name="dgLeeftijdscategorie" Header="Leeftijdscategorie" Binding="{Binding MediumDetail.LeeftijdsKlasse.Omschrijving}"  HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,69 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.BoekenbeursAanmakenView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="Aanmaken Boekenbeurs" Height="750" Width="800">
+    <Grid Style="{StaticResource WindowsBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="130"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <local:MenuBalk Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"></local:MenuBalk>
+
+        <Image x:Name="imgLibrary" Grid.Column="0" Grid.Row="1" Grid.RowSpan="15" Source="/Images/Library.jpg" Stretch="Fill" />
+
+        <Label x:Name="lblTitel" Content="NIEUWE BOEKENBEURS" Style="{StaticResource TypoTitel}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" />
+
+        <Label x:Name="lblNaam" Content="Naam" Style="{StaticResource TypoBody}" Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" />
+        <TextBox x:Name="txtNaam" Style="{StaticResource TextboxStyle}" Text="{Binding BoekenbeursRecord.Naam}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="4" />
+
+        <StackPanel Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2">
+            <Label x:Name="lblBeginDatum" Content="Begin datum" Style="{StaticResource TypoBody}" />
+            <DatePicker Height="40" SelectedDate="{Binding BoekenbeursRecord.DatumVan}" CalendarStyle="{StaticResource CalendarStyle}" Style="{StaticResource DatePickerStyle1}" />
+        </StackPanel>
+
+        <Label x:Name="lblBeginTijd" Visibility="{Binding Cmb}" Content="Tijdstip" Style="{StaticResource TypoBody}" Grid.Column="2" Grid.Row="6" VerticalAlignment="Bottom" />
+        <ComboBox x:Name="Uren" ItemsSource="{Binding Uren}" Visibility="{Binding Cmb}" SelectedItem="{Binding Beginuur}" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="2"></ComboBox>
+        <ComboBox x:Name="Minuten" ItemsSource="{Binding Minuten}" Visibility="{Binding Cmb}" SelectedItem="{Binding Beginminuten}" HorizontalContentAlignment="Stretch" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Right" Grid.Row="7" Grid.Column="2"></ComboBox>
+
+        <StackPanel Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2">
+            <Label x:Name="lblEindDatum" Content="Tot datum" VerticalAlignment="Bottom" Style="{StaticResource TypoBody}"></Label>
+            <DatePicker Height="40" SelectedDate="{Binding BoekenbeursRecord.DatumTot}" CalendarStyle="{StaticResource CalendarStyle}" Style="{StaticResource DatePickerStyle1}"></DatePicker>
+        </StackPanel>
+
+        <Label x:Name="lblEindTijd" Visibility="{Binding Cmb}" Content="Tijdstip" Style="{StaticResource TypoBody}" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2" VerticalAlignment="Bottom" />
+        <ComboBox x:Name="UrenEindtijd" Visibility="{Binding Cmb}" SelectedItem="{Binding Einduur}" ItemsSource="{Binding Uren}" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Left" Grid.Row="10" Grid.Column="2"></ComboBox>
+        <ComboBox x:Name="MinutenEindtijd" Visibility="{Binding Cmb}" SelectedItem="{Binding Eindminuten}" ItemsSource="{Binding Minuten}" HorizontalContentAlignment="Stretch" Style="{StaticResource ComboboxStyle}" HorizontalAlignment="Right" Grid.Row="10" Grid.Column="2"></ComboBox>
+
+        <Label x:Name="lblLocatie" Content="Locatie" Style="{StaticResource TypoBody}" Grid.Column="2" Grid.Row="11" VerticalAlignment="Bottom" />
+        <TextBox x:Name="txtLocatie" IsEnabled="{Binding LocatieEnabled}" Style="{StaticResource TextboxStyle}" Text="{Binding BoekenbeursRecord.Locatie}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="12" />
+        <Button x:Name="btnAanmaken" Width="120" Margin="5" Style="{StaticResource ButtonStyleRoze}" Command="{Binding}" CommandParameter="{Binding AanmakenWijzigen}" Grid.Column="3" Grid.Row="13" Content="{Binding ButtonTekst}" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

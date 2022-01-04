@@ -1,0 +1,55 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.OverzichtBoekenbeursView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C_Our_Souls_WPF.Views" xmlns:components="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="OverzichtBoekenbeursView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <components:MenuBalk Grid.Row="0" Grid.ColumnSpan="4"></components:MenuBalk>
+
+        <Label x:Name="lblZoeken" TextElement.FontWeight="Bold" Content="Zoeken" Grid.Row="2" Grid.Column="1" Margin="5" />
+        <Button Name="btnZoeken" Grid.Column="1" Grid.Row="3" Background="#EF5D58" Height="40" HorizontalAlignment="Left" Style="{StaticResource ButtonStyleRoze}" Margin="0,0.2" Command="{Binding}" CommandParameter="Zoeken">
+            <Image Source="/Images/search-white-01.png" Height="30"></Image>
+        </Button>
+        <TextBox x:Name="txtZoeken" Text="{Binding Path=txtZoeken}" Grid.Row="3" Grid.Column="1" Margin="30,10.2,15.4,10.2" Height="30" />
+
+        <Button x:Name="btnAanmaken" Style="{StaticResource ButtonStyleBlue}" Content="AANMAKEN" MaxHeight="60"  Grid.Column="1" Grid.Row="5"  Height="50" Margin="0 0 0 10"  Command="{Binding}" CommandParameter="Aanmaken" />
+        <Button x:Name="btnBewerken" Style="{StaticResource ButtonStyleBlue}" Content="BEWERKEN" MaxHeight="60"  Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" Margin="0 0 0 10"  Command="{Binding}" CommandParameter="Bewerken" />
+        <Button x:Name="btnVerwijderen" Style="{StaticResource ButtonStyleRoze}" Content="VERWIJDEREN" MaxHeight="60"   Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="50" Margin="0 0 0 10" Command="{Binding}" CommandParameter="Verwijderen" />
+
+        <Label x:Name="lblDatagridTitel" HorizontalContentAlignment="Left" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Content="BOEKENBEURZEN" Style="{StaticResource TypoTitel}" Margin="0 25" />
+        <DataGrid x:Name="datagridBoekenbeurzen" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Boekenbeurs}" SelectedItem="{Binding GeselecteerdeBoekenbeurs}"
+                  Grid.Row="2" Grid.RowSpan="6" HeadersVisibility="Column" SelectionMode="Single" Style="{StaticResource DataGridStyle}" Grid.Column="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgNaam" Binding="{Binding Naam}" Width="*" Header="Naam" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                <DataGridTextColumn x:Name="dgBeginDatum" Binding="{Binding DatumVan, StringFormat=d }" Width="*" Header="Begindatum" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                <DataGridTextColumn x:Name="dgEindDatum" Binding="{Binding DatumTot, StringFormat=d }" Width="*" Header="Einddatum" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                <DataGridTextColumn x:Name="dgBeginUur" Binding="{Binding DatumVan, StringFormat=HH:mm}" Header="Beginuur" Width="*" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                <DataGridTextColumn x:Name="dgEindUur" Binding="{Binding DatumTot, StringFormat=HH:mm}" Header="Einduur" Width="*" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+                <DataGridTextColumn x:Name="dgLocatien" Binding="{Binding Locatie}" Width="*" Header="Locatie" HeaderStyle="{StaticResource DatagridHeaderStyle}" CellStyle="{StaticResource CellStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

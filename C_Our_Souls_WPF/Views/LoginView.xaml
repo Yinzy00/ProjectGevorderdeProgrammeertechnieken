@@ -1,0 +1,78 @@
+﻿<Window x:Class="C_Our_Souls_WPF.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:components="clr-namespace:C_Our_Souls_WPF.Components"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Title="Login" Height="798.9" Width="1415.6">
+    <Window.Resources>
+        <!--<Style x:Key="LoginFormImage" TargetType="{x:Type Image}">
+            <Setter Property="Height" Value="300" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Margin" Value="5 5 5 100" />
+        </Style>
+        <Style x:Key="AuthenticationFormTextBoxStijl" BasedOn="{StaticResource TextboxStyle}" TargetType="{x:Type Control}">
+            <Setter Property="Margin" Value="0 0 0 30" />
+            <Setter Property="Background" Value="#E4DFD7" />
+            <Setter Property="BorderBrush" Value="#325453" />
+        </Style>-->
+        <Style x:Key="AuthenticationFormLinks" TargetType="{x:Type Control}" BasedOn="{StaticResource ColorProjectBlue}">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </Window.Resources>
+    <!--<Grid Style="{StaticResource WindowsBackgroundColor}">
+        <StackPanel Width="500" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image Source="/Images/Login-Book.png" Style="{StaticResource LoginFormImage}"></Image>
+            <TextBox Style="{StaticResource AuthenticationFormTextBoxStijl}"  x:Name="txtEmail" />
+            <PasswordBox Style="{StaticResource AuthenticationFormTextBoxStijl}" x:Name="txtPassword" />
+            <Button Style="{StaticResource ButtonStyle}" Background="#EF5D58" FontSize="25"  Foreground="White" Content="Aanmelden" />
+            <Label Style="{StaticResource AuthenticationFormLinks}"  HorizontalAlignment="Right" Content="Nog geen account? Registreer Hier." />
+            <Label Style="{StaticResource AuthenticationFormLinks}" HorizontalAlignment="Right" Content="Passwoord vergeten" />
+        </StackPanel>
+    </Grid>-->
+    <Grid Style="{StaticResource WindowsBackgroundColor}">
+        <StackPanel Width="300" FocusManager.FocusedElement="{Binding ElementName=txtEmail}"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    >
+            <Image Source="/Images/Login-Book.png"/>
+            <Label Style="{StaticResource TypoBody}" 
+                   Content="Email:"/>
+            <TextBox Style="{StaticResource TextboxStyle}"
+                     x:Name="txtEmail" 
+                     Text="{Binding Email}" 
+                     AutomationProperties.AutomationId="tbEmail" 
+                     />
+            <Label Style="{StaticResource TypoBody}" 
+                   Content="Wachtwoord:"/>
+
+            <components:CstmPasswordBox 
+                Password="{Binding Password}" 
+                />
+            <Button IsDefault="True" 
+                    Content="Aanmelden" 
+                    Style="{StaticResource ButtonStyleBlue}" 
+                    Command="{Binding}" 
+                    CommandParameter="LogIn" 
+                    IsEnabled="{Binding IsFilledIn}" 
+                    AutomationProperties.AutomationId="btAanmelden" 
+                    />
+            <Label Style="{StaticResource AuthenticationFormLinks}"  HorizontalAlignment="Right" Content="Nog geen account? Registreer hier.">
+                <Label.InputBindings>
+                    <MouseBinding Command="{Binding}" CommandParameter="Register" MouseAction="LeftClick" />
+                </Label.InputBindings>
+            </Label>
+            <Label Style="{StaticResource AuthenticationFormLinks}"  HorizontalAlignment="Right" Content="Passwoord vergeten">
+                <Label.InputBindings>
+                    <MouseBinding Command="{Binding}" CommandParameter="ForgotPassword" MouseAction="LeftClick" />
+                </Label.InputBindings>
+            </Label>
+        </StackPanel>
+    </Grid>
+</Window>
